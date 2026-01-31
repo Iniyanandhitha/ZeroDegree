@@ -1,4 +1,5 @@
-# Weather Guessing & Secret Match App
+# ZeroDegree
+
 
 ## Introduction
 Welcome to **Guess The Weather**, an interactive application that combines real-time weather data with a secure number matching game. 
@@ -31,8 +32,8 @@ Originally developed for the Nillion Tinybin bounty challenge, this app has been
 
 1.  Clone the repository:
     ```bash
-    git clone https://github.com/dhanush-adi/nillion-weather-main.git
-    cd guesstheweather
+    git clone https://github.com/Iniyanandhitha/ZeroDegree.git
+    cd ZeroDegree
     ```
 
 2.  Install dependencies:
