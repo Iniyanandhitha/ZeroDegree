@@ -6,23 +6,56 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  background-color: #e0f7fa;
-  font-family: Arial, sans-serif;
+  min-height: 100vh;
+  padding: 20px;
 `;
 
-const SplitContainer = styled.div`
+const GlassCard = styled.div`
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 40px;
+  width: 100%;
+  max-width: 1000px;
   display: flex;
+  flex-direction: row;
   justify-content: space-around;
-  width: 80%;
-  background: #ffffff;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  flex-wrap: wrap;
+  gap: 40px;
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 const Column = styled.div`
-  width: 45%;
+  flex: 1;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.3);
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+`;
+
+const Title = styled.h1`
+  color: #fff;
+  margin-bottom: 25px;
+  font-size: 2rem;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  text-align: center;
+`;
+
+const SubTitle = styled.h2`
+  color: #fff;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
   text-align: center;
 `;
 
@@ -30,78 +63,115 @@ const Form = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
+`;
+
+const Label = styled.label`
+  font-size: 1rem;
+  margin-bottom: 8px;
+  color: #fff;
+  font-weight: 500;
+  align-self: flex-start;
+  margin-left: 5px;
 `;
 
 const StyledInput = styled.input`
-  margin: 10px 0;
-  padding: 10px;
-  width: 80%;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  margin-bottom: 20px;
+  padding: 12px 16px;
+  width: 100%;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
   font-size: 16px;
-`;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  backdrop-filter: blur(2px);
+  transition: all 0.3s ease;
+  outline: none;
 
-const StyledButton = styled.button`
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  background-color: #0070f3;
-  color: white;
-  font-size: 16px;
-  cursor: pointer;
-  margin-top: 10px;
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+  }
 
-  &:hover {
-    background-color: #005bb5;
+  &:focus {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
   }
 `;
 
-const Error = styled.p`
-  color: red;
+const StyledButton = styled.button`
+  padding: 12px 24px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #6e8efb, #a777e3);
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  width: 100%;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
 `;
 
-const Success = styled.p`
-  color: green;
+const ResultCard = styled.div`
+  margin-top: 25px;
+  padding: 20px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.5);
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+
+  h2 {
+    margin-top: 0;
+    font-size: 1.2rem;
+    color: #333;
+  }
+
+  p {
+    margin: 10px 0;
+    color: #444;
+  }
 `;
 
-const Result = styled.div`
-  margin-top: 20px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #f9f9f9;
-  text-align: left;
+const ResultText = styled.p`
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: ${props => props.isSuccess ? '#2e7d32' : '#c62828'} !important;
 `;
 
 const Alert = styled.div`
-  padding: 10px;
-  border: 1px solid red;
-  border-radius: 5px;
-  background-color: #f8d7da;
-  color: #721c24;
-  margin-bottom: 10px;
+  width: 100%;
+  padding: 15px;
+  border-radius: 12px;
+  background-color: rgba(255, 219, 219, 0.9);
+  border: 1px solid #ffcdd2;
+  color: #b71c1c;
+  margin-bottom: 20px;
+  text-align: left;
 `;
 
 const AlertTitle = styled.h4`
-  margin: 0;
+  margin: 0 0 5px 0;
   font-weight: bold;
 `;
 
 const AlertDescription = styled.p`
   margin: 0;
-`;
-
-const Title = styled.h1`
-  color: #0070f3;
-  margin-bottom: 20px;
-`;
-
-const Label = styled.label`
-  font-size: 16px;
-  margin-bottom: 5px;
+  font-size: 0.9rem;
 `;
 
 export default function InputComparisonApp() {
+  const [weatherCity, setWeatherCity] = useState('Goa');
   const [weatherTemperatureGuess, setWeatherTemperatureGuess] = useState('');
   const [weatherData, setWeatherData] = useState(null);
   const [weatherResult, setWeatherResult] = useState('');
@@ -114,7 +184,6 @@ export default function InputComparisonApp() {
 
   const handleWeatherSubmit = async (e) => {
     e.preventDefault();
-    const weatherCity = 'Goa';
     try {
       const { actualTemperature, result } = await handleWeatherComparison(weatherCity, weatherTemperatureGuess);
       setWeatherData({ current: { temp_c: actualTemperature } });
@@ -143,19 +212,28 @@ export default function InputComparisonApp() {
 
   return (
     <Container>
-      <SplitContainer>
+      <GlassCard>
         <Column>
-          <Title>Weather Guessing App</Title>
+          <SubTitle>Weather Guessing</SubTitle>
           <Form onSubmit={handleWeatherSubmit}>
-            <p>City Name: Goa</p>
-            <Label>Guess Tomorrow's Temperature (°C):</Label>
+            <Label>City Name:</Label>
+            <StyledInput
+              type="text"
+              placeholder="e.g. London"
+              value={weatherCity}
+              onChange={(e) => setWeatherCity(e.target.value)}
+              required
+            />
+
+            <Label>Guess Temperature (°C):</Label>
             <StyledInput
               type="number"
+              placeholder="e.g. 25"
               value={weatherTemperatureGuess}
               onChange={(e) => setWeatherTemperatureGuess(e.target.value)}
               required
             />
-            <StyledButton type="submit">Submit Guess</StyledButton>
+            <StyledButton type="submit">Check Guess</StyledButton>
           </Form>
 
           {weatherError && (
@@ -165,26 +243,30 @@ export default function InputComparisonApp() {
             </Alert>
           )}
           {weatherData && (
-            <Result>
-              <h2>Weather in Goa</h2>
-              <p>Current Temperature: {weatherData.current.temp_c} °C</p>
-              <p className={weatherResult === 'Correct Guess!' ? Success : Error}>{weatherResult}</p>
-            </Result>
+            <ResultCard>
+              <h2>Result for {weatherCity}</h2>
+              <p>Actual: {weatherData.current.temp_c} °C</p>
+              <ResultText isSuccess={weatherResult === 'Correct Guess!'}>
+                {weatherResult}
+              </ResultText>
+            </ResultCard>
           )}
         </Column>
 
         <Column>
-          <Title>Weather Nada App</Title>
+          <SubTitle>Secret Number Match</SubTitle>
           <Form onSubmit={handlePostDataSubmit}>
-            <p>City Name: Goa</p>
-            <Label>Guess Tomorrow's Temperature (°F):</Label>
+            <Label>Guess the Secret Byte (0-255):</Label>
             <StyledInput
               type="number"
+              placeholder="e.g. 128"
               value={nadaTemperatureGuess}
+              min="0"
+              max="255"
               onChange={(e) => setNadaTemperatureGuess(e.target.value)}
               required
             />
-            <StyledButton type="submit">Submit Guess</StyledButton>
+            <StyledButton type="submit">Verify Secret</StyledButton>
           </Form>
 
           {postError && (
@@ -194,14 +276,16 @@ export default function InputComparisonApp() {
             </Alert>
           )}
           {postData && (
-            <Result>
-              <h2>Weather in Goa</h2>
-              <p>Current Temperature: {postData} °F</p>
-              <p className={postResult === 'Correct Guess!' ? Success : Error}>{postResult}</p>
-            </Result>
+            <ResultCard>
+              <h2>Result</h2>
+              <p>Secret Byte Value: {postData}</p>
+              <ResultText isSuccess={postResult === 'Correct Guess!'}>
+                {postResult}
+              </ResultText>
+            </ResultCard>
           )}
         </Column>
-      </SplitContainer>
+      </GlassCard>
     </Container>
   );
 }
